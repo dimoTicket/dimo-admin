@@ -1,13 +1,17 @@
-import {provideRouter, RouterConfig} from "@angular/router";
 import {TicketsComponent} from "./tickets.component";
 import {TicketDetailComponent} from "./ticket-detail.component";
 import {DashboardComponent} from "./dashboard.component";
+import {Routes, RouterModule} from "@angular/router";
+import {ModuleWithProviders} from "@angular/core";
 
-export const appRoutes:RouterConfig = [
+export const appRoutes: Routes = [
     {
         path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+    }, {
+        path: 'dashboard',
         component: DashboardComponent,
-        terminal: true
     }, {
         path: 'tickets',
         component: TicketsComponent
@@ -17,4 +21,5 @@ export const appRoutes:RouterConfig = [
     }
 ];
 
-export const APP_ROUTER_PROVIDERS = provideRouter(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+

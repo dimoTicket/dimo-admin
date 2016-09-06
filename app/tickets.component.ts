@@ -1,13 +1,11 @@
 import {Component, OnInit} from "@angular/core";
 import {Ticket} from "./ticket";
-import {TicketDetailComponent} from "./ticket-detail.component";
 import {TicketService} from "./ticket.service";
 import {Router} from "@angular/router";
 
 @Component({
     selector: 'my-tickets',
     templateUrl: 'app/templates/tickets.component.html',
-    directives: [TicketDetailComponent],
 })
 
 export class TicketsComponent implements OnInit {
