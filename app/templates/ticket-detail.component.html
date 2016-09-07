@@ -43,8 +43,15 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Location</div>
-                <div class="panel-body">
-                    Map here
+                <div class="panel-body" style="height: 45%;">
+                    <sebm-google-map [latitude]="ticket.latitude" [longitude]="ticket.longitude" [zoom]="17"
+                                     [scrollwheel]="false">
+                        <sebm-google-map-marker [latitude]="ticket.latitude" [longitude]="ticket.longitude">
+                            <sebm-google-map-info-window [disableAutoPan]="false" [isOpen]="true">
+                                Todo: Reverse geocoding
+                            </sebm-google-map-info-window>
+                        </sebm-google-map-marker>
+                    </sebm-google-map>
                 </div>
             </div>
         </div>

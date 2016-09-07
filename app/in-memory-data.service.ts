@@ -7,8 +7,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "id": 1,
                 "datetime": "2016-04-17 13:10:55",
                 "message": "Ticket one msg",
-                "latitude": 22.920227,
-                "longitude": 40.736851,
+                "latitude": 40.628386,
+                "longitude": 22.949639,
                 "status": "NEW",
                 "images": [
                     "imageone.jpg"
@@ -18,8 +18,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "id": 2,
                 "datetime": "2016-04-17 14:14:55",
                 "message": "Ticket two msg",
-                "latitude": 22.920227,
-                "longitude": 40.736851,
+                "latitude": 40.628386,
+                "longitude": 22.949639,
                 "status": "NEW",
                 "images": [
                     "imageone.jpg"
@@ -29,8 +29,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "id": 3,
                 "datetime": "2016-04-17 15:15:55",
                 "message": "Ticket three msg",
-                "latitude": 22.920227,
-                "longitude": 40.736851,
+                "latitude": 40.628386,
+                "longitude": 22.949639,
                 "status": "NEW",
                 "images": [
                     "imageone.jpg"
@@ -40,8 +40,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "id": 4,
                 "datetime": "2016-04-17 16:16:55",
                 "message": "Ticket four msg",
-                "latitude": 22.920227,
-                "longitude": 40.736851,
+                "latitude": 40.628386,
+                "longitude": 22.949639,
                 "status": "NEW",
                 "images": [
                     "imageone.jpg",
@@ -52,8 +52,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "id": 5,
                 "datetime": "2016-04-17 17:17:55",
                 "message": "Ticket five msg",
-                "latitude": 22.920227,
-                "longitude": 40.736851,
+                "latitude": 40.628386,
+                "longitude": 22.949639,
                 "status": "ASSIGNED",
                 "images": []
             }

@@ -11,6 +11,7 @@ import {TicketService} from "./ticket.service";
 import {InMemoryDataService} from "./in-memory-data.service";
 import {InMemoryWebApiModule} from "angular2-in-memory-web-api";
 import {ImageService} from "./image.service";
+import {AgmCoreModule} from "angular2-google-maps/core";
 
 @NgModule({
     imports: [
@@ -18,7 +19,10 @@ import {ImageService} from "./image.service";
         FormsModule,
         HttpModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService),
-        routing],
+        routing,
+        AgmCoreModule.forRoot({
+            apiKey: ''
+        })],
     declarations: [
         AppComponent,
         DashboardComponent,
