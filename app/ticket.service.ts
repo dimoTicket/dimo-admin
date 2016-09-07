@@ -7,13 +7,13 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class TicketService {
 
-    private ticketsUrl = 'app/tickets';  // URL to web api
+    private ticketsEndpointUrl = 'app/tickets';  // URL to web api
 
     constructor(private http:Http) {
     }
 
     getTickets():Observable<Ticket[]> {
-        return this.http.get(this.ticketsUrl)
+        return this.http.get(this.ticketsEndpointUrl)
             .map(response => Ticket.fromJSONArray(response.json().data))
             .catch(this.handleError);
     }

@@ -52,16 +52,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Users</div>
                 <div class="panel-body">
-                    <!--<ng-select [initData]="value"-->
-                               <!--[multiple]="true"-->
-                               <!--[items]="items"-->
-                               <!--(data)="refreshValue($event)"-->
-                               <!--(selected)="selected($event)"-->
-                               <!--(removed)="removed($event)"-->
-                               <!--placeholder="none selected">-->
-
-                    <!--</ng-select>-->
-                    <!--<pre>{{itemsToString(value)}}</pre>-->
                 </div>
             </div>
         </div>
@@ -72,9 +62,13 @@
         <div class="col-md-1"></div>
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Pictures</div>
-                <div class="panel-body">
-                    Carousel here
+                <div class="panel-heading">Images</div>
+                <div class="panel-body" style="height: 20%;display: inline-block">
+                    <span *ngFor="let imageUrl of imageUrls">
+                        <a [href]="imageUrl">
+                            <img class="img-thumbnail img-fit-inline-by-height" [src]="imageUrl"/>
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>

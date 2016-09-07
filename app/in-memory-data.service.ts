@@ -3,16 +3,60 @@ import {InMemoryDbService} from "angular2-in-memory-web-api";
 export class InMemoryDataService implements InMemoryDbService {
     createDb() {
         let tickets = [
-            {"id": 1, "message": "GG", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 2, "message": "Narco", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 3, "message": "Bombasto", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 4, "message": "Celeritas", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 5, "message": "Magneta", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 6, "message": "RubberMan", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 7, "message": "Dynama", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 8, "message": "Dr IQ", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 9, "message": "Magma", "status": "NEW", "datetime": "2016-04-17 13:10:55"},
-            {"id": 10, "message": "Tornado", "status": "ASSIGNED", "datetime": "2016-04-17 13:10:55"}
+            {
+                "id": 1,
+                "datetime": "2016-04-17 13:10:55",
+                "message": "Ticket one msg",
+                "latitude": 22.920227,
+                "longitude": 40.736851,
+                "status": "NEW",
+                "images": [
+                    "imageone.jpg"
+                ]
+            },
+            {
+                "id": 2,
+                "datetime": "2016-04-17 14:14:55",
+                "message": "Ticket two msg",
+                "latitude": 22.920227,
+                "longitude": 40.736851,
+                "status": "NEW",
+                "images": [
+                    "imageone.jpg"
+                ]
+            },
+            {
+                "id": 3,
+                "datetime": "2016-04-17 15:15:55",
+                "message": "Ticket three msg",
+                "latitude": 22.920227,
+                "longitude": 40.736851,
+                "status": "NEW",
+                "images": [
+                    "imageone.jpg"
+                ]
+            },
+            {
+                "id": 4,
+                "datetime": "2016-04-17 16:16:55",
+                "message": "Ticket four msg",
+                "latitude": 22.920227,
+                "longitude": 40.736851,
+                "status": "NEW",
+                "images": [
+                    "imageone.jpg",
+                    "imagetwo.jpg"
+                ]
+            },
+            {
+                "id": 5,
+                "datetime": "2016-04-17 17:17:55",
+                "message": "Ticket five msg",
+                "latitude": 22.920227,
+                "longitude": 40.736851,
+                "status": "ASSIGNED",
+                "images": []
+            }
         ];
         return {tickets};
     }

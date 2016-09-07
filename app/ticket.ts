@@ -1,25 +1,34 @@
 export class Ticket {
-    id:number;
-    message:string;
-    status:TicketStatus; //Should be kept in sync with the TickeStatus enum in the backend
-    datetime:Date;
+    id: number;
+    datetime: Date;
+    latitude: number;
+    longitude: number;
+    message: string;
+    status: TicketStatus; //Should be kept in sync with the TickeStatus enum in the backend
+    images: Array<string>;
 
-    constructor(id:number, message:string, status:string, datetime:string) {
+    constructor(id: number, datetime: string, latitude: number, longitude: number, message: string,
+                status: string, images: Array<string>) {
         this.id = id;
+        this.datetime = new Date(datetime);
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.message = message;
         this.status = this.getStatusFromString(status);
-        this.datetime = new Date(datetime);
+        this.images = images;
     }
 
-    static fromJSONArray(array:Array<Object>):Ticket[] {
-        return array.map(obj => new Ticket(obj['id'], obj['message'], obj['status'], obj['datetime']));
+    static fromJSONArray(array: Array<Object>): Ticket[] {
+        return array.map(obj => new Ticket(obj['id'], obj['datetime'], obj['latitude'], obj['longitude'],
+            obj['message'], obj['status'], array['images']));
     }
 
-    static fromJSON(ticket:Object):Ticket {
-        return new Ticket(ticket['id'], ticket['message'], ticket['status'], ticket['datetime']);
+    static fromJSON(ticket: Object): Ticket {
+        return new Ticket(ticket['id'], ticket['datetime'], ticket['latitude'], ticket['longitude'],
+            ticket['message'], ticket['status'], ticket['images']);
     }
 
-    private getStatusFromString(status:string):TicketStatus {
+    private getStatusFromString(status: string): TicketStatus {
         console.info("Parsing json status " + status + " to enum");
         let ticketStatus;
         if (status == "NEW") {

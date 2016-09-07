@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TicketService} from "./ticket.service";
 import {Ticket} from "./ticket";
+import {ImageService} from "./image.service";
 
 @Component({
     selector: 'my-ticket-detail',
@@ -12,9 +13,11 @@ import {Ticket} from "./ticket";
 export class TicketDetailComponent implements OnInit {
 
     private ticket: Ticket;
-    statuses = ["s", "b"];
+    statuses = ["one", "two"];
+    private imageUrls: Array<string>;
 
-    constructor(private ticketService: TicketService, private route: ActivatedRoute, private router: Router) {
+    constructor(private ticketService: TicketService, private route: ActivatedRoute, private router: Router,
+                private imageService: ImageService) {
     }
 
     ngOnInit() {
@@ -22,6 +25,13 @@ export class TicketDetailComponent implements OnInit {
             let id = +params['id'];
             this.ticketService.getTicket(id).subscribe(ticket => this.ticket = ticket);
         });
+        this.populateImagesArray();
+    }
+
+    populateImagesArray() {
+        let img1Url = this.imageService.getImageFullUrl("");
+        let img2Url = this.imageService.getImageFullUrl("");
+        this.imageUrls = [img1Url, img2Url];
     }
 
     goBack() {

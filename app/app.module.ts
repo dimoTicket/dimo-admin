@@ -10,6 +10,7 @@ import {TicketDetailComponent} from "./ticket-detail.component";
 import {TicketService} from "./ticket.service";
 import {InMemoryDataService} from "./in-memory-data.service";
 import {InMemoryWebApiModule} from "angular2-in-memory-web-api";
+import {ImageService} from "./image.service";
 
 @NgModule({
     imports: [
@@ -23,7 +24,9 @@ import {InMemoryWebApiModule} from "angular2-in-memory-web-api";
         DashboardComponent,
         TicketsComponent,
         TicketDetailComponent],
-    providers: [TicketService],
+    providers: [
+        TicketService,
+        ImageService],
     bootstrap: [AppComponent]
 })
 
