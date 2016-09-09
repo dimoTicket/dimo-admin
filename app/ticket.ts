@@ -50,7 +50,6 @@ export class Ticket {
         console.info("Json status parsed to enum : " + ticketStatus);
         return ticketStatus;
     }
-
 }
 
 export enum TicketStatus{

@@ -21,7 +21,7 @@ import {AgmCoreModule} from "angular2-google-maps/core";
         InMemoryWebApiModule.forRoot(InMemoryDataService),
         routing,
         AgmCoreModule.forRoot({
-            apiKey: ''
+            apiKey: 'AIzaSyDPFA0ETj1_ksvPD7WHfPyKOi3k3V5jPyc'
         })],
     declarations: [
         AppComponent,

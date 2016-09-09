@@ -29,8 +29,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Status</div>
                 <div class="panel-body">
-                    <select class="form-control" required>
-                        <option *ngFor="let s of statuses" [value]="s">{{s}}</option>
+                    <select class="form-control" required (change)="onStatusChange($event.target.value)">
+                        <option *ngFor=" let key of statusKeys" [value]="key">{{statuses[key]}}</option>
                     </select>
                 </div>
             </div>
