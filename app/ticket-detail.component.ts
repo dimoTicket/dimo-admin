@@ -25,7 +25,9 @@ export class TicketDetailComponent implements OnInit {
     ngOnInit() {
         this.route.params.subscribe(params => {
             let id = +params['id'];
-            this.ticketService.getTicket(id).subscribe(ticket => this.ticket = ticket);
+            this.ticketService.getTicket(id).subscribe(ticket => {
+                return this.ticket = ticket;
+            });
         });
         this.populateImagesArray();
         this.statusKeys = Object.keys(TicketStatus).filter(s => s.toUpperCase() === s);
