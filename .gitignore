@@ -40,6 +40,5 @@ jspm_packages
 
 .idea/
 dimo-admin.iml
-typings/
-*.js.map
-*.js
+/app/*.js.map
+/app/*.js

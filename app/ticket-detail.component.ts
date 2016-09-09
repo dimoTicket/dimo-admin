@@ -37,10 +37,12 @@ export class TicketDetailComponent implements OnInit {
         this.imageUrls = [img1Url, img2Url];
     }
 
-    private onStatusChange(newValue: any) {
-        console.log("new value in is :" + newValue);
-        console.log("New value parsed to enum gives :" + TicketStatus[newValue]);
-        console.log("Ticket status is : " + this.ticket.status);
+    private onStatusChange(newValue: string) {
+        this.ticket.status = TicketStatus[newValue];
+        console.debug("New in value is : " + newValue);
+        console.debug("New value parsed to enum gives : " + TicketStatus[newValue]);
+        console.debug("Ticket status is : " + this.ticket.status);
+        //TODO : call "update" of ticket service to persist changes.
     }
 
     goBack() {
