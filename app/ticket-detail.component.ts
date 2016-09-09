@@ -44,7 +44,7 @@ export class TicketDetailComponent implements OnInit {
         console.debug("New in value is : " + newValue);
         console.debug("New value parsed to enum gives : " + TicketStatus[newValue]);
         console.debug("Ticket status is : " + this.ticket.status);
-        //TODO : call "update" of ticket service to persist changes.
+        this.ticketService.updateTicket(this.ticket);
     }
 
     goBack() {

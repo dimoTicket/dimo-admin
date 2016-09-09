@@ -31,17 +31,17 @@ export class Ticket {
     private getStatusFromString(status: string): TicketStatus {
         console.info("Parsing json status " + status + " to enum");
         let ticketStatus;
-        if (status == "NEW") {
+        if (status.toUpperCase() == "NEW") {
             ticketStatus = TicketStatus.NEW;
-        } else if (status == "REJECTED") {
+        } else if (status.toUpperCase() == "REJECTED") {
             ticketStatus = TicketStatus.REJECTED;
-        } else if (status == "ASSIGNED") {
+        } else if (status.toUpperCase() == "ASSIGNED") {
             ticketStatus = TicketStatus.ASSIGNED;
-        } else if (status == "IN_PROGRESS") {
+        } else if (status.toUpperCase() == "IN_PROGRESS") {
             ticketStatus = TicketStatus.IN_PROGRESS;
-        } else if (status == "ABORTED") {
+        } else if (status.toUpperCase() == "ABORTED") {
             ticketStatus = TicketStatus.ABORTED;
-        } else if (status == "DONE") {
+        } else if (status.toUpperCase() == "DONE") {
             ticketStatus = TicketStatus.DONE;
         } else {
             console.error("Cannot parse ticket status " + status + " from json");

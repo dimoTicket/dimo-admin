@@ -31,7 +31,8 @@
                 <div class="panel-body">
                     <select class="form-control" required (change)="onStatusChange($event.target.value)">
                         <option *ngFor="let key of statusKeys" [value]="key"
-                                [selected]="statuses[key] == this.ticket.status">{{statuses[key]}}
+                                [selected]="statuses[key] == this.ticket.status">
+                            {{statuses[key]}}
                         </option>
                     </select>
                 </div>
