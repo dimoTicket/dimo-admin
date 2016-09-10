@@ -11,7 +11,7 @@ export class ImageService {
         if (number == 0) {
             return "http://webmastertuts.com/wp-content/uploads/2013/03/zero-posters.jpg";
         } else {
-            return "http://cdn2.hubspot.net/hub/10395/file-520062050-jpg/images/3203734_xxl_number_one.jpg";
+            return "http://images.clipartpanda.com/one-clipart-number_1.png";
         }
     }
 }

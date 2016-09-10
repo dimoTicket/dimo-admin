@@ -12,6 +12,7 @@ import {InMemoryDataService} from "./in-memory-data.service";
 import {InMemoryWebApiModule} from "angular2-in-memory-web-api";
 import {ImageService} from "./image.service";
 import {AgmCoreModule} from "angular2-google-maps/core";
+import {CarouselComponent} from "./carousel.component";
 
 @NgModule({
     imports: [
@@ -21,13 +22,14 @@ import {AgmCoreModule} from "angular2-google-maps/core";
         InMemoryWebApiModule.forRoot(InMemoryDataService),
         routing,
         AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyDPFA0ETj1_ksvPD7WHfPyKOi3k3V5jPyc'
+            apiKey: ''
         })],
     declarations: [
         AppComponent,
         DashboardComponent,
         TicketsComponent,
-        TicketDetailComponent],
+        TicketDetailComponent,
+        CarouselComponent],
     providers: [
         TicketService,
         ImageService],

@@ -6,14 +6,14 @@ import {ImageService} from "./image.service";
 
 @Component({
     selector: 'my-tickets',
-    templateUrl: 'app/templates/tickets.component.html',
+    templateUrl: 'app/templates/tickets.component.html'
 })
 
 export class TicketsComponent implements OnInit {
 
     tickets: Ticket[];
     ticket: Ticket;
-    private imageUrls: Array<string>;
+    selectedTicketImageUrls: Array<string>;
 
     constructor(private router: Router, private ticketService: TicketService,
                 private imageService: ImageService) {
@@ -21,17 +21,10 @@ export class TicketsComponent implements OnInit {
 
     ngOnInit() {
         this.getTickets();
-        this.populateImagesArray();
-    }
-
-    private populateImagesArray() {
-        let img1Url = this.imageService.getImageFullUrl("");
-        let img2Url = this.imageService.getImageFullUrl("");
-        this.imageUrls = [img1Url, img2Url];
     }
 
     onSelect(ticket: Ticket) {
-        console.log("onSelect called with ticket id : " + ticket.id);
+        console.debug("onSelect called with ticket id : " + ticket.id);
         this.router.navigate(['/ticket', ticket.id])
             .catch(err => console.error(err));
     }
@@ -41,6 +34,13 @@ export class TicketsComponent implements OnInit {
     }
 
     onSelectPicture(ticket: Ticket) {
-        console.log("Show picture selected for ticket id : " + ticket.id);
+        console.debug("Show images selected for ticket id : " + ticket.id);
+        this.populateImagesArray(ticket);
+    }
+
+    private populateImagesArray(ticket: Ticket) {
+        let img1Url = this.imageService.getImageFullUrl("");
+        let img2Url = this.imageService.getImageFullUrl("");
+        this.selectedTicketImageUrls = [img1Url, img2Url];
     }
 }
