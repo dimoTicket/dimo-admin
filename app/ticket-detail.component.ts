@@ -33,17 +33,15 @@ export class TicketDetailComponent implements OnInit {
         this.statusKeys = Object.keys(TicketStatus).filter(s => s.toUpperCase() === s);
     }
 
-    populateImagesArray() {
+    private populateImagesArray() {
         let img1Url = this.imageService.getImageFullUrl("");
         let img2Url = this.imageService.getImageFullUrl("");
         this.imageUrls = [img1Url, img2Url];
     }
 
     private onStatusChange(newValue: string) {
+        console.debug("New ticket status value is : " + newValue);
         this.ticket.status = TicketStatus[newValue];
-        console.debug("New in value is : " + newValue);
-        console.debug("New value parsed to enum gives : " + TicketStatus[newValue]);
-        console.debug("Ticket status is : " + this.ticket.status);
         this.ticketService.updateTicket(this.ticket);
     }
 
