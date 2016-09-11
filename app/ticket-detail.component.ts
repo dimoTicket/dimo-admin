@@ -17,6 +17,7 @@ export class TicketDetailComponent implements OnInit {
     private statuses = TicketStatus; //Used to print labels in select field
     private statusKeys;
     private imageUrls: Array<string>;
+    private selectedImageIndex: number = 0; //check @output
 
     constructor(private ticketService: TicketService, private route: ActivatedRoute, private router: Router,
                 private imageService: ImageService) {
@@ -40,6 +41,12 @@ export class TicketDetailComponent implements OnInit {
             this.imageUrls.push(this.imageService.getImageFullUrl("url"));
         }
     }
+
+    imageSelected(index: number) {
+        console.debug("index in is : " + index);
+        this.selectedImageIndex = index; //Used by <my-carousel> to show clicked pic 1st
+    }
+
 
     private onStatusChange(newValue: string) {
         console.debug("New ticket status value is : " + newValue);

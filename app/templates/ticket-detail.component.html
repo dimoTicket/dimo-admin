@@ -73,16 +73,35 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">Images</div>
-                <div class="panel-body" style="height: 20%;display: inline-block">
-                    <span *ngFor="let imageUrl of imageUrls">
-                        <a [href]="imageUrl">
-                            <img class="img-thumbnail img-fit-inline-by-height" [src]="imageUrl"/>
-                        </a>
+                <div class="panel-body" style="height: auto;display: inline-block">
+                    <span *ngFor="let imageUrl of imageUrls; let i = index">
+                            <img class="img-thumbnail img-fit-inline-by-height" [src]="imageUrl"
+                                 (click)="imageSelected(i)"
+                                 data-toggle="modal" data-target="#myModal"/>
                     </span>
                 </div>
             </div>
         </div>
         <div class="col-md-3"></div>
     </div>
+</div>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Images</h4>
+            </div>
+            <div class="modal-body">
+                <my-carousel [imageUrls]='imageUrls'
+                             [activeImageIndex]='selectedImageIndex'></my-carousel>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

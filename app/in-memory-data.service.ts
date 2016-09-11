@@ -22,7 +22,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "longitude": 22.949639,
                 "status": "NEW",
                 "images": [
-                    "imageone.jpg"
+                    "imageone.jpg",
+                    "imagetwo.jpg"
                 ]
             },
             {
@@ -45,7 +46,6 @@ export class InMemoryDataService implements InMemoryDbService {
                 "status": "NEW",
                 "images": [
                     "imageone.jpg",
-                    "imagetwo.jpg"
                 ]
             },
             {
@@ -55,7 +55,8 @@ export class InMemoryDataService implements InMemoryDbService {
                 "latitude": 40.628386,
                 "longitude": 22.949639,
                 "status": "ASSIGNED",
-                "images": []
+                "images": [
+                ]
             }
         ];
         return {tickets};
