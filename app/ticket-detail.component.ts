@@ -26,17 +26,19 @@ export class TicketDetailComponent implements OnInit {
         this.route.params.subscribe(params => {
             let id = +params['id'];
             this.ticketService.getTicket(id).subscribe(ticket => {
+                this.populateImagesArray(ticket);
                 return this.ticket = ticket;
             });
         });
-        this.populateImagesArray();
         this.statusKeys = Object.keys(TicketStatus).filter(s => s.toUpperCase() === s);
     }
 
-    private populateImagesArray() {
-        let img1Url = this.imageService.getImageFullUrl("");
-        let img2Url = this.imageService.getImageFullUrl("");
-        this.imageUrls = [img1Url, img2Url];
+    private populateImagesArray(ticket: Ticket) {
+        console.debug("populate images called..");
+        this.imageUrls = [];
+        for (var url in ticket.images) {
+            this.imageUrls.push(this.imageService.getImageFullUrl("url"));
+        }
     }
 
     private onStatusChange(newValue: string) {

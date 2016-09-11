@@ -12,7 +12,6 @@ import {ImageService} from "./image.service";
 export class TicketsComponent implements OnInit {
 
     tickets: Ticket[];
-    ticket: Ticket;
     selectedTicketImageUrls: Array<string>;
 
     constructor(private router: Router, private ticketService: TicketService,
@@ -39,8 +38,10 @@ export class TicketsComponent implements OnInit {
     }
 
     private populateImagesArray(ticket: Ticket) {
-        let img1Url = this.imageService.getImageFullUrl("");
-        let img2Url = this.imageService.getImageFullUrl("");
-        this.selectedTicketImageUrls = [img1Url, img2Url];
+        console.debug("populate images called..");
+        this.selectedTicketImageUrls = [];
+        for (var url in ticket.images) {
+            this.selectedTicketImageUrls.push(this.imageService.getImageFullUrl("url"));
+        }
     }
 }

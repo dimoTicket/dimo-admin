@@ -16,11 +16,12 @@ export class Ticket {
         this.message = message;
         this.status = this.getStatusFromString(status);
         this.images = images;
+        console.warn("images in constructor is : " + images);
     }
 
     static fromJSONArray(array: Array<Object>): Ticket[] {
         return array.map(obj => new Ticket(obj['id'], obj['datetime'], obj['latitude'], obj['longitude'],
-            obj['message'], obj['status'], array['images']));
+            obj['message'], obj['status'], obj['images']));
     }
 
     static fromJSON(ticket: Object): Ticket {
