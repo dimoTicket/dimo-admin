@@ -2,11 +2,12 @@
     <ol class="carousel-indicators">
         <li *ngFor="let imageUrl of imageUrls; let i = index"
             data-target="#myCarousel" [attr.data-slide-to]="i"
-            [class.active]="i===0"></li>
+            [class.active]="i===activeImageIndex"></li>
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div *ngFor="let imageUrl of imageUrls; let i = index" class="item" [class.active]="i===0">
+        <div *ngFor="let imageUrl of imageUrls; let i = index" class="item"
+             [class.active]="i===activeImageIndex">
             <img [src]="imageUrl">
         </div>
     </div>

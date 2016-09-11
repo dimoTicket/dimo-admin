@@ -16,7 +16,6 @@ export class Ticket {
         this.message = message;
         this.status = this.getStatusFromString(status);
         this.images = images;
-        console.warn("images in constructor is : " + images);
     }
 
     static fromJSONArray(array: Array<Object>): Ticket[] {
