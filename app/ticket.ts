@@ -19,7 +19,7 @@ export class Ticket {
     }
 
     static fromJSONArray(array: Array<Object>): Ticket[] {
-        return array.map(obj => new Ticket(obj['id'], obj['datetime'], obj['latitude'], obj['longitude'],
+        return array.map(obj => new Ticket(obj['id'], obj['createdAt'], obj['latitude'], obj['longitude'],
             obj['message'], obj['status'], obj['images']));
     }
 
@@ -29,7 +29,7 @@ export class Ticket {
     }
 
     private getStatusFromString(status: string): TicketStatus {
-        console.info("Parsing json status " + status + " to enum");
+        console.debug("Parsing json status " + status + " to enum");
         let ticketStatus;
         if (status.toUpperCase() == "NEW") {
             ticketStatus = TicketStatus.NEW;
@@ -47,7 +47,7 @@ export class Ticket {
             console.error("Cannot parse ticket status " + status + " from json");
             throw new TypeError("Json status " + status + " doesn't match any enum candidates");
         }
-        console.info("Json status parsed to enum : " + ticketStatus);
+        console.debug("Json status parsed to enum : " + ticketStatus);
         return ticketStatus;
     }
 }

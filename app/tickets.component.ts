@@ -29,7 +29,10 @@ export class TicketsComponent implements OnInit {
     }
 
     getTickets() {
-        this.ticketService.getTickets().subscribe(tickets => this.tickets = tickets);
+        this.ticketService.getTickets().subscribe(
+            tickets => this.tickets = tickets,
+            err => console.error(err),
+            () => console.debug("Tickets data mapped to Ticket objects"));
     }
 
     onSelectPicture(ticket: Ticket) {
