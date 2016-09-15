@@ -43,8 +43,7 @@ export class TicketsComponent implements OnInit {
     private populateImagesArray(ticket: Ticket) {
         console.debug("populate images called..");
         this.selectedTicketImageUrls = [];
-        for (var url in ticket.images) {
-            this.selectedTicketImageUrls.push(this.imageService.getImageFullUrl("url"));
-        }
+        ticket.images.forEach(ti => this.selectedTicketImageUrls.push(this.imageService.getImageFullUrl(ti.imageName)));
+
     }
 }

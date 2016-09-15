@@ -1,14 +1,15 @@
+import {TicketImage} from "./ticket-image";
 export class Ticket {
     id: number;
-    datetime: Date;
+    datetime: Date; //todo : rename to createdAt
     latitude: number;
     longitude: number;
     message: string;
     status: TicketStatus; //Should be kept in sync with the TickeStatus enum in the backend
-    images: Array<string>;
+    images: Array<TicketImage>;
 
     constructor(id: number, datetime: string, latitude: number, longitude: number, message: string,
-                status: string, images: Array<string>) {
+                status: string, images: Array<TicketImage>) {
         this.id = id;
         this.datetime = new Date(datetime);
         this.latitude = latitude;

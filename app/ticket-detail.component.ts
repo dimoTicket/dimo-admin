@@ -37,9 +37,7 @@ export class TicketDetailComponent implements OnInit {
     private populateImagesArray(ticket: Ticket) {
         console.debug("populate images called");
         this.imageUrls = [];
-        for (var url in ticket.images) {
-            this.imageUrls.push(this.imageService.getImageFullUrl("url"));
-        }
+        ticket.images.forEach(ti => this.imageUrls.push(this.imageService.getImageFullUrl(ti.imageName)));
     }
 
     imageSelected(index: number) {
