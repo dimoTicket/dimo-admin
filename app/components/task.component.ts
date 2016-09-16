@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
-import {TicketService} from "./ticket.service";
-import {Ticket, TicketStatus} from "./ticket";
-import {ImageService} from "./image.service";
+import {TicketService} from "../services/ticket.service";
+import {Ticket, TicketStatus} from "../entities/ticket";
+import {ImageService} from "../services/image.service";
 
 
 @Component({

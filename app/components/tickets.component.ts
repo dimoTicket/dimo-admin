@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {Ticket} from "./ticket";
-import {TicketService} from "./ticket.service";
+import {Ticket} from "../entities/ticket";
+import {TicketService} from "../services/ticket.service";
 import {Router} from "@angular/router";
-import {ImageService} from "./image.service";
+import {ImageService} from "../services/image.service";
 
 @Component({
     selector: 'my-tickets',

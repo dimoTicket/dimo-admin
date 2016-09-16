@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {ImageService} from "./image.service";
+import {ImageService} from "../services/image.service";
 
 @Component({
     selector: 'my-carousel',

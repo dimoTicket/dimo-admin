@@ -1,6 +1,6 @@
-import {TicketsComponent} from "./tickets.component";
-import {TaskComponent} from "./task.component";
-import {DashboardComponent} from "./dashboard.component";
+import {TicketsComponent} from "./components/tickets.component";
+import {TaskComponent} from "./components/task.component";
+import {DashboardComponent} from "./components/dashboard.component";
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
 

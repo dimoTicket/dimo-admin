@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
-import {TicketService} from "./ticket.service";
-import "./rxjs-operators";
+import {TicketService} from "../services/ticket.service";
+import "../rxjs-operators";
 
 
 @Component({
