@@ -6,7 +6,7 @@ import {routing} from "./app.routing";
 import {HttpModule} from "@angular/http";
 import {DashboardComponent} from "./dashboard.component";
 import {TicketsComponent} from "./tickets.component";
-import {TicketDetailComponent} from "./ticket-detail.component";
+import {TaskComponent} from "./task.component";
 import {TicketService} from "./ticket.service";
 import {ImageService} from "./image.service";
 import {AgmCoreModule} from "angular2-google-maps/core";
@@ -27,7 +27,7 @@ import {CarouselComponent} from "./carousel.component";
         AppComponent,
         DashboardComponent,
         TicketsComponent,
-        TicketDetailComponent,
+        TaskComponent,
         CarouselComponent],
     providers: [
         TicketService,

@@ -7,11 +7,11 @@ import {ImageService} from "./image.service";
 
 @Component({
     selector: 'my-ticket-detail',
-    templateUrl: 'app/templates/ticket-detail.component.html',
+    templateUrl: 'app/templates/task.component.html',
     providers: []
 })
 
-export class TicketDetailComponent implements OnInit {
+export class TaskComponent implements OnInit {
 
     private ticket: Ticket;
     private statuses = TicketStatus; //Used to print labels in select field

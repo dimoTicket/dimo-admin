@@ -1,5 +1,5 @@
 import {TicketsComponent} from "./tickets.component";
-import {TicketDetailComponent} from "./ticket-detail.component";
+import {TaskComponent} from "./task.component";
 import {DashboardComponent} from "./dashboard.component";
 import {Routes, RouterModule} from "@angular/router";
 import {ModuleWithProviders} from "@angular/core";
@@ -17,7 +17,7 @@ export const appRoutes: Routes = [
         component: TicketsComponent
     }, {
         path: 'ticket/:id',
-        component: TicketDetailComponent
+        component: TaskComponent
     }
 ];
 
