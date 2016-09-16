@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Headers, Http} from "@angular/http";
+import {Headers, Http, RequestOptions, Response} from "@angular/http";
 import {Ticket} from "../entities/ticket";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/map";
@@ -8,35 +8,43 @@ import "rxjs/add/operator/catch";
 @Injectable()
 export class TicketService {
 
-    private url = 'http://localhost:8080/api';
+    private baseUrl = 'http://localhost:8080/api';
 
     constructor(private http: Http) {
     }
 
     getTickets(): Observable<Ticket[]> {
-        let ticketsObservable = this.http.get(this.url + "/tickets");
-        ticketsObservable.subscribe(res => console.debug("tickets obs json is: " + JSON.stringify(res)));
+        let ticketsObservable = this.http.get(this.baseUrl + "/tickets");
         return ticketsObservable.map(response => Ticket.fromJSONArray(response.json()))
             .catch(this.handleError);
     }
 
     getTicket(id: number): Observable<Ticket> {
-        //todo : test this
-
-        let ticketObservable = this.http.get(this.url + "/ticket/" + id);
-        ticketObservable.subscribe(res => console.debug("ticket obs json is: " + JSON.stringify(res)));
+        let ticketObservable = this.http.get(this.baseUrl + "/ticket/" + id);
         return ticketObservable.map(res => res.json());
     }
 
     updateTicket(ticket: Ticket): Observable<Ticket> {
         //fixme : won't work for real endpoint.
-        const url = `${this.url}/${ticket.id}`;
+        const url = `${this.baseUrl}/${ticket.id}`;
         let headers = new Headers({'Content-Type': 'application/json'});
         console.warn("ticket b4 update : " + JSON.stringify(ticket));
         return this.http
             .put(url, JSON.stringify(ticket), {headers: headers})
             .map(response => Ticket.fromJSON(response.json().data))
             .catch(this.handleError);
+    }
+
+    updateTicketStatus(ticket: Ticket, newStatus: string): Observable<Response> {
+        const url = this.baseUrl + "/task/changestatus?ticketId=" + ticket.id +
+            "&status=" + newStatus;
+        let headers = new Headers({'Content-Type': 'application/json'});
+        let options = new RequestOptions({headers: headers});
+        var res = this.http.post(url, options);
+        res.subscribe(
+            (r) => console.debug(r.toString()),
+            (e) => console.error(this.handleError(e)));
+        return res;
     }
 
     private handleError(error: any) {

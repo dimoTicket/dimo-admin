@@ -47,9 +47,8 @@ export class TaskComponent implements OnInit {
 
 
     private onStatusChange(newValue: string) {
-        console.debug("New ticket status value is : " + newValue);
         this.ticket.status = TicketStatus[newValue];
-        this.ticketService.updateTicket(this.ticket);
+        this.ticketService.updateTicketStatus(this.ticket, newValue);
     }
 
     goBack() {
