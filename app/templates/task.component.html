@@ -47,14 +47,14 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Location</div>
                 <div class="panel-body" style="height: 45%;">
-                    <!--<sebm-google-map [latitude]="ticket.latitude" [longitude]="ticket.longitude" [zoom]="17"-->
-                                     <!--[scrollwheel]="false">-->
-                        <!--<sebm-google-map-marker [latitude]="ticket.latitude" [longitude]="ticket.longitude">-->
-                            <!--<sebm-google-map-info-window [disableAutoPan]="false" [isOpen]="true">-->
-                                <!--Todo: Reverse geocoding-->
-                            <!--</sebm-google-map-info-window>-->
-                        <!--</sebm-google-map-marker>-->
-                    <!--</sebm-google-map>-->
+                    <agm-map [latitude]="ticket.latitude" [longitude]="ticket.longitude" [zoom]="17"
+                                     [scrollwheel]="false">
+                        <agm-marker [latitude]="ticket.latitude" [longitude]="ticket.longitude">
+                            <agm-info-window [disableAutoPan]="false" [isOpen]="true">
+                                Todo: Reverse geocoding
+                            </agm-info-window>
+                        </agm-marker>
+                    </agm-map>
                 </div>
             </div>
         </div>

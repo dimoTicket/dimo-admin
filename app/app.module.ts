@@ -1,4 +1,4 @@
-import {NgModule } from "@angular/core";
+import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppComponent} from "./components/app.component";
 import {FormsModule} from "@angular/forms";
@@ -9,16 +9,19 @@ import {TicketsComponent} from "./components/tickets.component";
 import {TaskComponent} from "./components/task.component";
 import {TicketService} from "./services/ticket.service";
 import {ImageService} from "./services/image.service";
-import {AgmCoreModule} from "angular2-google-maps/core";
+import {AgmCoreModule} from "@agm/core";
 import {CarouselComponent} from "./components/carousel.component";
-// import {InMemoryDataService} from "./in-memory-data.service";
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        routing],
+        routing,
+        AgmCoreModule.forRoot({
+            apiKey: ''
+        })
+    ],
     declarations: [
         AppComponent,
         DashboardComponent,
