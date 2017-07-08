@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var ImageService = (function () {
     function ImageService() {
-        this.getImageUrl = "http://localhost:8080/api/ticket/getimage/";
+        this.getImageUrl = "http://192.168.1.64:8080/api/ticket/getimage/";
     }
     ImageService.prototype.getImageFullUrl = function (imageName) {
         return this.getImageUrl + imageName;

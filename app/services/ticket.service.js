@@ -18,7 +18,7 @@ require("rxjs/add/operator/catch");
 var TicketService = (function () {
     function TicketService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:8080/api';
+        this.baseUrl = 'http://192.168.1.64:8080/api';
     }
     TicketService.prototype.getTickets = function () {
         var ticketsObservable = this.http.get(this.baseUrl + "/tickets");

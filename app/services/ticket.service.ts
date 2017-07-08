@@ -8,7 +8,7 @@ import "rxjs/add/operator/catch";
 @Injectable()
 export class TicketService {
 
-    private baseUrl = 'http://localhost:8080/api';
+    private baseUrl = 'http://192.168.1.64:8080/api';
 
     constructor(private http: Http) {
     }
