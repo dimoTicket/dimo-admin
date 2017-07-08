@@ -18,11 +18,7 @@ import {CarouselComponent} from "./components/carousel.component";
         BrowserModule,
         FormsModule,
         HttpModule,
-        // InMemoryWebApiModule.forRoot(InMemoryDataService),
-        routing,
-        AgmCoreModule.forRoot({
-            apiKey: ''
-        })],
+        routing],
     declarations: [
         AppComponent,
         DashboardComponent,
