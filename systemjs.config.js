@@ -18,6 +18,7 @@ System.config({
         '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
         '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
         '@agm/core': 'npm:@agm/core/core.umd.js',
+        'angular-2-dropdown-multiselect': 'npm:angular-2-dropdown-multiselect/src/multiselect-dropdown.js',
 
         // other libraries
         'rxjs':                       'npm:rxjs',

@@ -11,6 +11,8 @@ import {TicketService} from "./services/ticket.service";
 import {ImageService} from "./services/image.service";
 import {AgmCoreModule} from "@agm/core";
 import {CarouselComponent} from "./components/carousel.component";
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+
 
 @NgModule({
     imports: [
@@ -20,7 +22,8 @@ import {CarouselComponent} from "./components/carousel.component";
         routing,
         AgmCoreModule.forRoot({
             apiKey: ''
-        })
+        }),
+        MultiselectDropdownModule
     ],
     declarations: [
         AppComponent,
