@@ -15,7 +15,7 @@ export class TaskComponent implements OnInit {
 
     private ticket: Ticket;
     private statuses = TicketStatus; //Used to print labels in select field
-    private statusKeys;
+    private statusKeys: any;
     private imageUrls: Array<string>;
     private selectedImageIndex: number = 0; //check @output
 
