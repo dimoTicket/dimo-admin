@@ -7,11 +7,13 @@ import {HttpModule} from "@angular/http";
 import {DashboardComponent} from "./components/dashboard.component";
 import {TicketsComponent} from "./components/tickets.component";
 import {TaskComponent} from "./components/task.component";
+import {UserService} from "./services/user.service";
 import {TicketService} from "./services/ticket.service";
 import {ImageService} from "./services/image.service";
 import {AgmCoreModule} from "@agm/core";
 import {CarouselComponent} from "./components/carousel.component";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import {UserSelectComponent} from "./components/user-select.component";
 
 
 @NgModule({
@@ -30,8 +32,10 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
         DashboardComponent,
         TicketsComponent,
         TaskComponent,
-        CarouselComponent],
+        CarouselComponent,
+        UserSelectComponent],
     providers: [
+        UserService,
         TicketService,
         ImageService],
     bootstrap: [AppComponent]
