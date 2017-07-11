@@ -14,6 +14,7 @@ import {AgmCoreModule} from "@agm/core";
 import {CarouselComponent} from "./components/carousel.component";
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import {UserSelectComponent} from "./components/user-select.component";
+import {TaskService} from "./services/task.service";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {UserSelectComponent} from "./components/user-select.component";
     providers: [
         UserService,
         TicketService,
+        TaskService,
         ImageService],
     bootstrap: [AppComponent]
 })

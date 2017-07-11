@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from "angular-2-dropdown-multiselect";
 import {User} from "../entities/user";
 import {UserService} from "../services/user.service";
+import {ActivatedRoute} from "@angular/router";
+import {TaskService} from "../services/task.service";
 
 @Component({
     selector: 'user-select',
@@ -11,6 +13,7 @@ import {UserService} from "../services/user.service";
 
 export class UserSelectComponent implements OnInit {
     users: User[];
+
     optionsModel: number[];
     myOptions: IMultiSelectOption[];
 
@@ -23,7 +26,6 @@ export class UserSelectComponent implements OnInit {
         displayAllSelectedText: true
     };
 
-
     // Text configuration
     myTexts: IMultiSelectTexts = {
         checkAll: 'Select all',
@@ -35,19 +37,31 @@ export class UserSelectComponent implements OnInit {
         allSelected: 'All selected',
     };
 
-    constructor(private userService: UserService) {
+    constructor(private route: ActivatedRoute, private userService: UserService,
+                private taskService: TaskService) {
     }
 
     ngOnInit() {
-        this.getUsersAndSetDropdown();
+        this.populateDropdown();
+        this.preselectAlreadyAssignedUsers();
     }
 
-    getUsersAndSetDropdown() {
+    private populateDropdown() {
         this.userService.getUsers().subscribe(
             users => this.myOptions = this.convertUsersToMultiSelect(users),
             err => console.error(err),
             () => console.debug("Trying to Get users..")
         );
+    }
+
+    private preselectAlreadyAssignedUsers() {
+        this.route.params.subscribe(params => {
+            let id = +params['id'];
+            this.taskService.getTaskByTicketId(id)
+                .subscribe(task => this.preselectUsers(task.users),
+                    err => console.warn("404 on task with id: " + id)
+                );
+        });
     }
 
     onChange() {
@@ -61,5 +75,11 @@ export class UserSelectComponent implements OnInit {
             mule.push({id: user.id, name: user.username});
         }
         return mule;
+    }
+
+    private preselectUsers(users: User[]): void {
+        this.optionsModel = [];
+        console.info("Adding users ids to optionsModel (preselecting users already assigned)");
+        users.forEach(u => this.optionsModel.push(u.id));
     }
 }
