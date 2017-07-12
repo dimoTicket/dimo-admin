@@ -55,6 +55,12 @@ export class TaskComponent implements OnInit {
         this.goToTickets();
     }
 
+    //Covers browser save button and task page save(save+back) button
+    ngOnDestroy(){
+
+        console.warn("Rest call for status and users should be triggered");
+    }
+
     goToTickets() {
         this.router.navigate(['/tickets']);
     }

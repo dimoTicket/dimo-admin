@@ -12,10 +12,12 @@ import {TaskService} from "../services/task.service";
 })
 
 export class UserSelectComponent implements OnInit {
-    users: User[];
-
+    //Used by the component internally
     optionsModel: number[];
     myOptions: IMultiSelectOption[];
+    //Used by us to determine initial state (pre-selected users)
+    initialOptionsModel: number[];
+    ticketId: number;
 
     // Settings configuration
     mySettings: IMultiSelectSettings = {
@@ -42,6 +44,7 @@ export class UserSelectComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.optionsModel = [];
         this.populateDropdown();
         this.preselectAlreadyAssignedUsers();
     }
@@ -56,16 +59,44 @@ export class UserSelectComponent implements OnInit {
 
     private preselectAlreadyAssignedUsers() {
         this.route.params.subscribe(params => {
-            let id = +params['id'];
-            this.taskService.getTaskByTicketId(id)
-                .subscribe(task => this.preselectUsers(task.users),
-                    err => console.warn("404 on task with id: " + id)
-                );
+            this.ticketId = +params['id'];
+            this.taskService.getTaskByTicketId(this.ticketId)
+                .subscribe(task => {
+                        return this.preselectUsers(task.users);
+                    },
+                    err => console.info("No users to preselect for task id: " + this.ticketId)
+                ).add(() => this.initialOptionsModel = this.optionsModel.slice()
+            );
         });
     }
 
-    onChange() {
-        console.log(this.optionsModel);
+    ngOnDestroy() {
+        this.updateUsersAssignedToDb();
+    }
+
+    //Runs both arrays against each other to calculate which users
+    //have to be added and/or removed.
+    updateUsersAssignedToDb() {
+        let userIdsToAdd: number[] = [];
+        let userIdsToRemove: number[] = [];
+
+        //calculate ins
+        this.optionsModel.forEach(uid => {
+            if (this.initialOptionsModel.indexOf(uid) == -1) {
+                userIdsToAdd.push(uid);
+            }
+        });
+        //calculate outs
+        this.initialOptionsModel.forEach(uid => {
+            if (this.optionsModel.indexOf(uid) == -1) {
+                userIdsToRemove.push(uid);
+            }
+        });
+        console.debug("Users to add: " + userIdsToAdd);
+        console.debug("Users to remove: " + userIdsToRemove);
+
+        this.taskService.addUsersToTask(this.ticketId, userIdsToAdd);
+        this.taskService.removeUsersFromTask(this.ticketId, userIdsToRemove);
     }
 
     //Used to convert our User objects to the format supported by the dropdown component
@@ -78,7 +109,6 @@ export class UserSelectComponent implements OnInit {
     }
 
     private preselectUsers(users: User[]): void {
-        this.optionsModel = [];
         console.info("Adding users ids to optionsModel (preselecting users already assigned)");
         users.forEach(u => this.optionsModel.push(u.id));
     }
