@@ -32,28 +32,36 @@ export class TaskService {
                     if (res.status == 200) {
                         task = res.json();
 
-                        //Loop for post calls to remove users
+                        let userCounter = 0;
+                        let usersJson = "";
                         for (let uid of userIdsToRemove) {
-                            let jsonMule = "{" +
-                                "\"id\": " + task.id + "," +
-                                "\"ticket\": {\"id\": " + ticketId + "}," +
-                                "\"users\": [" +
-                                "{" +
-                                "\"id\": " + uid +
-                                "}" +
-                                "]" +
-                                "}";
-                            console.debug("json is: " + jsonMule);
-
-                            let headers = new Headers({'Content-Type': 'application/json'});
-                            let options = new RequestOptions({headers: headers});
-                            this.http.post(this.baseUrl + "/task/removeusers/", jsonMule, options)
-                                .subscribe(
-                                    r => console.debug(r),
-                                    e => console.warn(e),
-                                    () => console.warn("Sent post to remove user from task"));
+                            if (userCounter == 0) {
+                                usersJson = "{\"id\": " + uid + "}";
+                            }
+                            else {
+                                usersJson += ", {\"id\": " + uid + "}";
+                            }
+                            userCounter += 1;
                         }
-                    } else {
+
+                        let jsonMule = "{" +
+                            "\"id\": " + task.id + "," +
+                            "\"ticket\": {\"id\": " + ticketId + "}," +
+                            "\"users\": [" +
+                            usersJson +
+                            "]" +
+                            "}";
+                        console.debug("json is: " + jsonMule);
+
+                        let headers = new Headers({'Content-Type': 'application/json'});
+                        let options = new RequestOptions({headers: headers});
+                        this.http.post(this.baseUrl + "/task/removeusers/", jsonMule, options)
+                            .subscribe(
+                                r => console.debug(r),
+                                e => console.warn(e),
+                                () => console.warn("Sent post to remove user from task"));
+                    }
+                    else {
                         console.warn("Task for ticketId: " + ticketId + " not found. Doing nothing.");
                     }
                     return res;
