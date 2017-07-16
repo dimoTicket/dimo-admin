@@ -74,6 +74,11 @@ export class UserSelectComponent implements OnInit {
         this.updateUsersAssignedToDb();
     }
 
+    onSelect(selected: string) {
+        console.warn("selected onSelect: " + selected);
+    }
+
+
     //Runs both arrays against each other to calculate which users
     //have to be added and/or removed.
     updateUsersAssignedToDb() {

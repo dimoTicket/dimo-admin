@@ -48,17 +48,11 @@ export class TaskComponent implements OnInit {
 
     private onStatusChange(newValue: string) {
         this.ticket.status = TicketStatus[newValue];
-        this.ticketService.updateTicketStatus(this.ticket, newValue);
+        this.ticketService.updateTicketStatus(this.ticket, TicketStatus[this.ticket.status]);
     }
 
     goBack() {
         this.goToTickets();
-    }
-
-    //Covers browser save button and task page save(save+back) button
-    ngOnDestroy(){
-
-        console.warn("Rest call for status and users should be triggered");
     }
 
     goToTickets() {

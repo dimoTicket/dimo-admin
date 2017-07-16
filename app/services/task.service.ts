@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Http} from "@angular/http";
+import {Headers, Http, RequestOptions} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {Task} from "../entities/task";
 
@@ -12,8 +12,8 @@ export class TaskService {
     }
 
     getTaskByTicketId(id: number): Observable<Task> {
-        let tasksObservable = this.http.get(this.baseUrl + "/task/byticket/" + id);
-        return tasksObservable.map(res => res.json());
+        let taskObservable = this.http.get(this.baseUrl + "/task/byticket/" + id);
+        return taskObservable.map(res => res.json());
     }
 
     addUsersToTask(ticketId: number, userIdsToAdd: number[]) {
@@ -23,10 +23,43 @@ export class TaskService {
     }
 
     removeUsersFromTask(ticketId: number, userIdsToRemove: number[]) {
-        //todo: use getTaskByTicketId to determine if a task exists, otherwise throw error
-        //todo: because this method shouldn't be called if a task doesn't exist
-        console.warn("Stub remove users to task called. ticket id: " + ticketId
-            + ", user Ids to remove: " + userIdsToRemove);
+        //use getTaskByTicketId to determine if a task exists, otherwise throw error
+        //because this method shouldn't be called if a task doesn't exist
+        let task: Task;
+        this.http.get(this.baseUrl + "/task/byticket/" + ticketId)
+            .subscribe(
+                res => {
+                    if (res.status == 200) {
+                        task = res.json();
+
+                        //Loop for post calls to remove users
+                        for (let uid of userIdsToRemove) {
+                            let jsonMule = "{" +
+                                "\"id\": " + task.id + "," +
+                                "\"ticket\": {\"id\": " + ticketId + "}," +
+                                "\"users\": [" +
+                                "{" +
+                                "\"id\": " + uid +
+                                "}" +
+                                "]" +
+                                "}";
+                            console.debug("json is: " + jsonMule);
+
+                            let headers = new Headers({'Content-Type': 'application/json'});
+                            let options = new RequestOptions({headers: headers});
+                            this.http.post(this.baseUrl + "/task/removeusers/", jsonMule, options)
+                                .subscribe(
+                                    r => console.debug(r),
+                                    e => console.warn(e),
+                                    () => console.warn("Sent post to remove user from task"));
+                        }
+                    } else {
+                        console.warn("Task for ticketId: " + ticketId + " not found. Doing nothing.");
+                    }
+                    return res;
+                },
+                err => console.warn(err)
+            );
     }
 
     private handleError(error: any) {

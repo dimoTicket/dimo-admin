@@ -46,14 +46,10 @@ var TaskComponent = (function () {
     };
     TaskComponent.prototype.onStatusChange = function (newValue) {
         this.ticket.status = ticket_1.TicketStatus[newValue];
-        this.ticketService.updateTicketStatus(this.ticket, newValue);
+        this.ticketService.updateTicketStatus(this.ticket, ticket_1.TicketStatus[this.ticket.status]);
     };
     TaskComponent.prototype.goBack = function () {
         this.goToTickets();
-    };
-    //Covers browser save button and task page save(save+back) button
-    TaskComponent.prototype.ngOnDestroy = function () {
-        console.warn("Rest call for status and users should be triggered");
     };
     TaskComponent.prototype.goToTickets = function () {
         this.router.navigate(['/tickets']);

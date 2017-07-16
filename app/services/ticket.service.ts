@@ -40,7 +40,7 @@ export class TicketService {
             "&status=" + newStatus;
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers: headers});
-        var res = this.http.post(url, options);
+        let res = this.http.post(url, options);
         res.subscribe(
             (r) => console.debug(r.toString()),
             (e) => console.error(this.handleError(e)));
