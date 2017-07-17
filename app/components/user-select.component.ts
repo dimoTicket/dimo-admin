@@ -64,9 +64,8 @@ export class UserSelectComponent implements OnInit {
                 .subscribe(task => {
                         return this.preselectUsers(task.users);
                     },
-                    err => console.info("No users to preselect for task id: " + this.ticketId)
-                ).add(() => this.initialOptionsModel = this.optionsModel.slice()
-            );
+                    err => console.debug("No users to preselect for task id: " + this.ticketId)
+                ).add(() => this.initialOptionsModel = this.optionsModel.slice());
         });
     }
 
@@ -75,7 +74,7 @@ export class UserSelectComponent implements OnInit {
     }
 
     onSelect(selected: string) {
-        console.warn("selected onSelect: " + selected);
+        console.info("selected onSelect: " + selected);
     }
 
 
@@ -100,8 +99,12 @@ export class UserSelectComponent implements OnInit {
         console.debug("Users to add: " + userIdsToAdd);
         console.debug("Users to remove: " + userIdsToRemove);
 
-        this.taskService.addUsersToTask(this.ticketId, userIdsToAdd);
-        this.taskService.removeUsersFromTask(this.ticketId, userIdsToRemove);
+        if (userIdsToAdd.length > 0) {
+            this.taskService.addUsersToTask(this.ticketId, userIdsToAdd);
+        }
+        if (userIdsToRemove.length > 0) {
+            this.taskService.removeUsersFromTask(this.ticketId, userIdsToRemove);
+        }
     }
 
     //Used to convert our User objects to the format supported by the dropdown component
